@@ -300,6 +300,105 @@ section {
     text-decoration: underline;
 }
 
+.project-media {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    cursor: pointer;
+}
+
+.project-preview,
+.project-video {
+    display: block;
+
+    width: 100%;
+    aspect-ratio: 16 / 10;
+
+    object-fit: cover;
+}
+
+.project-video {
+    position: absolute;
+    inset: 0;
+
+    opacity: 0;
+
+    transition: opacity 0.25s ease;
+}
+
+.project-media.is-playing .project-video {
+    opacity: 1;
+}
+
+
+/* Overlay */
+
+.video-overlay {
+    position: absolute;
+    inset: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(0, 0, 0, 0);
+
+    transition: background 0.25s ease;
+
+    pointer-events: none;
+}
+
+
+/* PLAY */
+
+.video-overlay span {
+    padding: 10px 17px;
+
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 6px;
+
+    background: rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(8px);
+
+    color: white;
+
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+
+    opacity: 0;
+    transform: translateY(5px);
+
+    transition:
+        opacity 0.25s ease,
+        transform 0.25s ease;
+}
+
+
+/* Hover */
+
+.project-media:hover .video-overlay {
+    background: rgba(0, 0, 0, 0.35);
+}
+
+.project-media:hover .video-overlay span {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* Пока видео не играет — показываем JPG */
+
+.project-media.is-playing .video-overlay {
+    background: rgba(0, 0, 0, 0.15);
+}
+
+.project-media.is-playing .video-overlay span {
+    opacity: 0;
+}
+
 /* =========================
            ABOUT
         ========================= */
